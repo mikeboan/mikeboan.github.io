@@ -1,3 +1,7 @@
 [submodule "battle_tetris"]
 	path = battle_tetris
 	url = https://github.com/mikeboan/battle_tetris
+
+[submodule "cent"]
+	path = cent
+	url = https://github.com/mikeboan/cent
