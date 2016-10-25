@@ -1,3 +1,3 @@
-[submodule "battle-tetris"]
-	path = battle-tetris
-	url = https://github.com/mikeboan/battle-tetris
+[submodule "battle_tetris"]
+	path = battle_tetris
+	url = https://github.com/mikeboan/battle_tetris
