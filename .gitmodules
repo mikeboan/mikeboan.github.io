@@ -1,0 +1,3 @@
+[submodule "battle-tetris"]
+	path = battle-tetris
+	url = https://github.com/mikeboan/battle-tetris
