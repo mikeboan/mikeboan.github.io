@@ -311,7 +311,7 @@ p.brief-description {
   transform: translateY(-50%);
   width: 42%;
   font-family: 'RHL', Garamond, 'Times New Roman', serif;
-  line-height: 1.5;
+  line-height: 1.25;
 }
 
 p.brief-description:after {
