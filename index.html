@@ -5,8 +5,26 @@
   </head>
 
   <body>
-    I am iframe -- check console for cookies
+    P&G Testing
   </body>
 
-  <script src="https://codepen.io/mikeboan/pen/xxGBLQq.js"></script>
+  <script src="https://cdn-stg.tapad.com/js/pandg-sdk.js"></script>
+
+
+  <script>document.addEventListener("DOMContentLoaded", function () {
+
+    function randomString() {
+      return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+    }
+
+    const randomData = {
+      [randomString()]: randomString(),
+      [randomString()]: randomString(),
+      [randomString()]: {
+        [randomString()]: randomString(),
+      }
+    }
+
+    window.Tapad.init({ ccpa: "abc", gdpr: "xyz", sid: "Mike's Github" }).sync(randomData)
+  })</script>
 </html>
