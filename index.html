@@ -8,23 +8,77 @@
     P&G Testing
   </body>
 
-  <script src="https://cdn-stg.tapad.app/js/pandg-sdk.js"></script>
-
-
-  <script>document.addEventListener("DOMContentLoaded", function () {
-
-    function randomString() {
-      return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
-    }
-
-    const randomData = {
-      [randomString()]: randomString(),
-      [randomString()]: randomString(),
-      [randomString()]: {
-        [randomString()]: randomString(),
+  <script src="https://cdn.tapad.app/js/dcs-xhr.js"></script>
+  <script>
+    var tapad = Tapad.init(
+      {
+        accountId: 38,
+        tagId: "YcjVMXe"
+      },
+      {
+        pixelUrl: "https://tag.tapad.com"
       }
+    );
+
+    function prefixEntryKeysAndSerializeValues(entries, prefix) {
+      return Object.entries(entries).reduce(
+        (accum, [key, val]) => ({
+          [`${prefix}${key}`]:
+          typeof val === "object" || Array.isArray(val)
+            ? JSON.stringify(val)
+            : val,
+          ...accum
+        }),
+        {}
+      );
     }
 
-    window.Tapad.init({ ccpa: "abc", gdpr: "xyz", sid: "Mike's Github" }).sync(randomData)
-  })</script>
+    function getChromiumVersion(versions) {
+      if (versions.isUndefined) {
+        return undefined;
+      }
+
+      const chromium = versions.filter(
+        browser => browser["brand"] === "Chromium"
+      )[0];
+
+      return chromium.isUndefined ? undefined : chromium["version"];
+    }
+
+    async function getHighEntropyMap(hintNames) {
+      return navigator.userAgentData.getHighEntropyValues(hintNames);
+    }
+
+    async function getHints() {
+      const heHintNames = [
+        "platformVersion",
+        "fullVersionList",
+        "model",
+        "architecture",
+        "bitness"
+      ];
+
+      const prefix = "ch-";
+
+      const lowEntropy = {
+        mobile: navigator.userAgentData.mobile,
+        platform: navigator.userAgentData.platform,
+        brands: navigator.userAgentData.brands,
+        userAgent: navigator.userAgent
+      };
+
+      const highEntropy = await getHighEntropyMap(heHintNames);
+
+      const allHints = {
+        ...highEntropy,
+        ...lowEntropy,
+        chromiumVersion: getChromiumVersion(lowEntropy.brands),
+        chromiumFullVersion: getChromiumVersion(highEntropy.fullVersionList)
+      };
+
+      return prefixEntryKeysAndSerializeValues(allHints, prefix);
+    }
+
+    tapad.sync(await getHints(), {});
+  </script>
 </html>
