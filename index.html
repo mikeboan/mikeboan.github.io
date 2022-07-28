@@ -79,7 +79,7 @@
       return prefixEntryKeysAndSerializeValues(allHints, prefix);
     }
 
-    getHints.then(hints => tapad.sync(hints, {}))
+    getHints().then(hints => tapad.sync(hints, {}))
 
   </script>
 </html>
