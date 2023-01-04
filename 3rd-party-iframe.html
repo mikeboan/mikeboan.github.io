@@ -1,0 +1,17 @@
+<html>
+    <head>
+        <script src="https://pghub.io/js-uc/tapad-sdk-beta-1670254735921.js"></script>
+        <script>
+            var tapad = Tapad.init({
+                syncUrl: "https://example.com"
+            })
+            tapad.sync().then(function() {
+                console.log('synced')
+            })
+        </script>
+    </head>
+
+    <body>
+        <div>i am iframe</div>
+    </body>
+</html>
