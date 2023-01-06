@@ -1,33 +1,16 @@
 <html>
 <head>
-    <script src="https://pghub.io/js-uc/tapad-sdk-beta-1670254735921.js"></script>
+    <script src="https://cdn.tapad.app/js-uc/tapad-sdk-beta-1673040146817.js"></script>
     <script>
-        var tapad = Tapad.init({
-            syncUrl: "https://example.com"
-        })
+        var tapad = Tapad.init()
         tapad.sync().then(function () {
             console.log('synced')
         })
     </script>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            navigator.userAgentData.getHighEntropyValues([
-                "platformVersion",
-                "fullVersionList",
-                "model",
-                "architecture",
-                "bitness"
-            ])
-                .then(function (uaData) {
-                    document.getElementById('ch-pre').innerText = JSON.stringify(uaData, null, 2)
-                })
-        })
-    </script>
 </head>
 
 <body>
-<div>i am iframe</div>
-<pre id="ch-pre"></pre>
+    SDK Testing
 </body>
 </html>
