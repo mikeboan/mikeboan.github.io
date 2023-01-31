@@ -3,31 +3,20 @@
   <head>
     <title>sdk testing</title>
 
-<script src="https://cdn.tapad.app/js-uc/tapad-sdk-beta-1674153368794.js"></script>
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
+    <script src="./sdk.js"></script>
+    <script>
+      var tapad = Tapad.init({
+        partnerId: "insert partner id here",
+        partnerDeviceId: "insert partner device id here",
+        partnerUrl: "insert partner url here"
+      })
 
-    var tapad = Tapad.init({
-      partnerId: "mike-testing",
-      partnerDeviceId: "some-id",
-      partnerUrl: "https://tapad.com"
-    })
-
-    var resultPre = document.getElementById('sync-result');
-
-    tapad.sync().then(function () {
-      resultPre.innerHTML = 'sync successful'
-    }).catch(function (e) {
-      resultPre.innerHTML = JSON.stringify(e, null, 2)
-    })
-  })
-</script>
+      tapad.sync()
+    </script>
   </head>
 
   <body>
-  SDK Testing
-
-  <pre id="sync-result"></pre>
+    SDK Testing
   </body>
 
 </html>
